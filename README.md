@@ -120,8 +120,7 @@ def home():
         </select><br><br>
         <button type="submit">Calculate</button>
     </form>
-    '''
-    
+    '''    
 @app.route('/calculate', methods=['POST'])
 def calculate():
     a = float(request.form['num1'])
@@ -138,7 +137,6 @@ def calculate():
         result = a / b if b != 0 else "Error"
 
     return f"<h3>Result: {result}</h3><a href='/'>Back</a>"
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
