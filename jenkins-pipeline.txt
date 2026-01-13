@@ -1,0 +1,24 @@
+pipeline{
+    agent any
+    
+    stages {
+        stage ('github repo clone') {
+            steps {
+                git branch: 'main', credentialsId: '94a4bcd2-64c9-45d6-b669-298cc053d80d', url: 'https://github.com/rohitkutty288/calculator-docker.git'
+            }
+        }
+        stage ('build docker image') {
+            steps {
+                sh 'docker build -t calculator-docker .'
+            }
+        }
+        stage ('run rm docker container') {
+            steps {
+                sh '''
+                docker rm -f calculator || true
+                docker run -d -p 5000:5000 --name calculator calculator-docker
+                '''
+            }
+        }
+    }
+}
