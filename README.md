@@ -102,9 +102,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 🧑‍💻 Step 3: Python Calculator Application
 app.py
 from flask import Flask, request
-
 app = Flask(__name__)
-
 @app.route('/')
 def home():
     return '''
@@ -126,7 +124,6 @@ def calculate():
     a = float(request.form['num1'])
     b = float(request.form['num2'])
     op = request.form['operation']
-
     if op == 'add':
         result = a + b
     elif op == 'sub':
@@ -135,7 +132,6 @@ def calculate():
         result = a * b
     elif op == 'div':
         result = a / b if b != 0 else "Error"
-
     return f"<h3>Result: {result}</h3><a href='/'>Back</a>"
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
